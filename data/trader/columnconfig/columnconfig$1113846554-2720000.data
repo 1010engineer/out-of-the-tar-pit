@@ -1,0 +1,4 @@
+(|ColumnName| |ConfigName| |ExpressionToCalc|)
+(string string expr)
+(|BidAskSpread| benconfig (- ask bid))
+(|Position| benconfig (sum (restrict (rename (rename trade 'isin 'origisin) 'book 'origbook) '(and (= isin origisin) (= book origbook))) 'nominal))

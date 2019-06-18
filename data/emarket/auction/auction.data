@@ -1,0 +1,5 @@
+(auction_ item_ start_ end_ vendor_)
+(integer integer when when integer)
+(1001 1001 (when 10/04/2005 15:39:26) (when 10/05/2005 15:39:26) 1001 |Boys Mountain Bike| |24 gear mountain bike|)
+(1002 1002 (when 10/04/2005 15:39:26) (when 10/05/2005 15:39:26) 1001 |Girls Mountain Bike| |18 gear mountain bike|)
+(1003 1003 (when 10/04/2005 15:39:26) (when 10/05/2005 15:39:26) 1001 |Boys Racer Bicycle| |12 gear bike|)

@@ -1,0 +1,8 @@
+(p_ pname color weight city)
+(string string string real string)
+(p1 nut red 12.0 london)
+(p2 bolt "green or grey" 17.0 paris)
+(p3 screw blue 17.0 oslo)
+(p4 screw red 14.0 london)
+(p5 cam blue 12.0 paris)
+(p6 cog red 19.0 london)

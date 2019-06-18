@@ -1,0 +1,5 @@
+(Sheet_ID Owner Name Expression)
+(integer string string expr)
+(1 "moseleb" "Ben's HighYield Bonds" (> coupon 10.0))
+(2 "moseleb" "Ben's EUR Bonds" (= currency "EUR"))
+

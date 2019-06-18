@@ -1,0 +1,9 @@
+(ColumnConfig_ID Column_Name Expression Color Width)
+(integer string expr color real)
+(1 "Instrument" instrument (color (255 255 255)) 90.0)
+(1 "Maturity Date" maturity (color (255 255 255)) 82.0)
+(1 "Coupon" (* 100 coupon) (color (255 255 255)) 25.0)
+(1 "Bid Price - Obsolete" (* 100 bid) (color (255 255 255)) 25.0)
+(1 "Ask Price - Obsolete" (* 100 bid) (color (255 255 255)) 25.0)
+(1 "Price" (* 100 bidAskPrice) (color (255 255 255)) 50.0)
+

@@ -1,0 +1,7 @@
+(|Name| |Age|)
+(String Integer)
+("John Smith" 20)
+("Ian Jones" 10)
+("Jim Blake" 30)
+("Nathan Clark" 20)
+("Jean Adams" 30)

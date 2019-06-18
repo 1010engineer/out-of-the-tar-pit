@@ -1,0 +1,3 @@
+(id_ firstname lastname dob username password pref_ccy addr_)
+(integer string string when string string string integer)
+(1001 |John| |Smith| (when 10/04/1975 15:39:26) smithj fastfred GBP 1001)

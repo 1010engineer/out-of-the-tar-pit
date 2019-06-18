@@ -1,0 +1,5 @@
+(auction_ bidder_ offer time)
+(integer integer real when)
+(1001 1001 95.0 (when 09/05/2005 15:39:26))
+(1001 1002 90.0 (when 08/05/2005 15:39:26))
+(1001 1001 98.3 (when 10/05/2005 15:39:26))

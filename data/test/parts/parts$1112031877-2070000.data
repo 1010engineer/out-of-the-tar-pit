@@ -1,0 +1,3 @@
+(city color p_ pname weight)
+(string string string string real)
+(devon green p1 nut 19.0)

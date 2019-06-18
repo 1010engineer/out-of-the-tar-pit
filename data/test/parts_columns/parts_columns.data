@@ -1,0 +1,5 @@
+(id column_name display_name back_color width expra namea)
+(integer string string real real expr string)
+(1 dweight ddweight 10.0 50.0 (* 2.0 weight) doubleWeight)
+(1 tweight ttweight 10.0 50.0 (* 3.0 weight) tripWeight)
+

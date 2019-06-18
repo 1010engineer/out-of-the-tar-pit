@@ -1,0 +1,5 @@
+(p_ pname color weight city when_made)
+(string string string real string when)
+(p7 widget pink 3.4 didcot (when 26/8/2002 6:00:00))
+(p8 doobry beige 2.2 romford (when 26/8/2002 17:00:00))
+(p9 whatsit beige 2.0 romford (when 6/8/2002 17:30:00))

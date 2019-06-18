@@ -1,0 +1,3 @@
+(city color p_ pname weight)
+(string string string string real)
+(rome green p1 nut 2.0)

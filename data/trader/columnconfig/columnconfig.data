@@ -1,0 +1,4 @@
+(|ConfigName| |ColumnName| |ExpressionToCalc| )
+(string string expr)
+(benconfig |DoubleCoupon| (* 2.0 coupon))
+(benconfig |TrebleCoupon| (* 3.0 coupon))
