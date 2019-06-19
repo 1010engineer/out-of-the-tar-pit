@@ -24,7 +24,7 @@
       (display (string-append "saving table....:" (symbol->string rel-var-name) "\n"))
      (let* ((new-sexp-value (second (rel->sexp new-rel)))
             (dir-path (dir-for-table rel-var-name))
-            (now-time (current-time TIME-UTC))
+            (now-time (current-time time-utc))
             (path (build-path dir-path
                               (string-append (symbol->string rel-var-name) "$"
                                              (stringify (time-second now-time)) "-"
@@ -76,12 +76,12 @@
                    (nanosec-with-suffix (string-drop tstring (+ 1 ind2)))
                    (nanosec (string-take nanosec-with-suffix (string-index nanosec-with-suffix #\.)))
                    (sec (string-take tstring ind2)))
-              (make-time TIME-UTC (string->number nanosec) (string->number sec)))
+              (make-time time-utc (string->number nanosec) (string->number sec)))
             ;; If no time is derivable from the filename then resort to getting
             ;; an approximate time from the file modification stamp...
             (let* ((platform-seconds-mod-time (file-or-directory-modify-seconds (build-path dir version)))
                    (plt-date (seconds->date platform-seconds-mod-time))
-                   (srfi-date (make-srfi:date 0
+                   (srfi-date (make-date 0
                                          (date-second plt-date)
                                          (date-minute plt-date)
                                          (date-hour plt-date)

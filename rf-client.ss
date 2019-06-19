@@ -50,14 +50,14 @@
       (let ((response
              (if (pair? msg)
                  (case (car msg)
-                   ((debug) (eval (second msg) (interaction-environment)))
+                   ((debug) (eval (second msg)))
                    ((monitor)
                       (core-monitor-expr (sexp->expr (second msg) make-var-ref) ; expr
                                          (cons ccon rid)      ; context - so we can stop monitoring later...
                                          (lambda (new-val) (send-response rid new-val ccon)))
                       (client-eval-msg (second msg))) ; eval the bit inside the monitor straight away
                    ((assign)
-                      (core-assign (current-time TIME-UTC) ; when 'new value expr' and 'precond' should be eval'd..
+                      (core-assign (current-time time-utc) ; when 'new value expr' and 'precond' should be eval'd..
                                    (sexp->expr (second msg) make-var-ref)  ; precond
                                    (third msg)                             ; variable-name
                                    (sexp->expr (fourth msg) make-var-ref)) ; new value expression
@@ -76,7 +76,7 @@
              ;; TBA - set up the callbacks...
              ;; using (core-monitor-expr) .... if we do this then we could
              ;; get rid of the explicit "monitor" declaration / request
-             (core-eval-expr (current-time TIME-UTC) expr))
+             (core-eval-expr (current-time time-utc) expr))
             (core-eval-expr null expr))))
 
   (define (close-connection ccon)
@@ -105,7 +105,7 @@
   (define (process-connection ccon)
       ;; Read and process all input from 'ccon' until exhausted...
       ;; This proc is not supposed to return anything....
-      (with-handlers ((exn:i/o:port:closed? ; PLT
+      (with-handlers ((port-closed? ; PLT
                        (lambda (exn)
                          (display "Cleaning up closed client connection...")
                          (close-connection ccon))))

@@ -89,12 +89,12 @@
             (reduce op ridentity (map (lambda (l) (list-ref l attr-index)) (rel/body rel))))))
 
   (define (add-day when value)
-    (make-time TIME-UTC
+    (make-time time-utc
                (time-nanosecond when)
                (+ (time-second when) (* (* 60 60 24) value))))
 
   (define (add-minute when value)
-    (make-time TIME-UTC
+    (make-time time-utc
                (time-nanosecond when)
                (+ (time-second when) (* (* 60 60) value))))
 
