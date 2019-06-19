@@ -37,8 +37,8 @@
       ;; Will return empty string if there's nothing to read
       (read-from-port-until p
                             (lambda (p string-so-far)
-                              (not (with-handlers ((exn:i/o:port:closed? ; v209 PLT
-;;                              (not (with-handlers ((exn:fail:network? ; v300 PLT
+;;                              (not (with-handlers ((exn:i/o:port:closed? ; v209 PLT
+                              (not (with-handlers ((exn:fail:network? ; v300 PLT
                                                     (lambda (exn) "")))
                                      (char-ready? p))))
                             ""))

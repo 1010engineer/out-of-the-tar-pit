@@ -27,8 +27,7 @@
   ;; Below this is the publicly-exported API
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   (define (runloop)
-      (let* ((waitable (apply object-wait-multiple #f (map car *runloop-entries*))) ; PLT v209
-                                        ; PLT v300 has renamed object-wait-multiple to something else...
+      (let* ((waitable (apply sync/timeout #f (map car *runloop-entries*)))
              (callback (cdr (assoc waitable *runloop-entries*))))
         ;; NB - This code assumes that all the waitables return themselves - ok
         ;; for ports and socket-listeners....
@@ -61,7 +60,7 @@
              (let* ((callback (cdr mon-entry))
                     (expr (caar mon-entry))
                     (context (cdar mon-entry))
-                    (whentime (current-time TIME-UTC)) ; TBA - probably ought to get from an arg...
+                    (whentime (current-time time-utc)) ; TBA - probably ought to get from an arg...
                                         ; ...but we do need to ensure that whatever time is used
                                         ; does reflect the _results_ of this operation - ie it will
                                         ; need to be _after_ the 'when' that was used to evaluate
@@ -71,7 +70,7 @@
                                         ; this update...
                      ; See the notes with 'asof' in expr-defs
                      ; for why the workaround below is necessary for the PLT v209 impl of SRFI 19
-                    (one-sec-from-now (make-time TIME-UTC
+                    (one-sec-from-now (make-time time-utc
                                                  (time-nanosecond whentime)
                                                  (+ (time-second whentime) 1)))
                     (new-value (core-eval-expr one-sec-from-now expr)))
