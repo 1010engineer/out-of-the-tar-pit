@@ -81,7 +81,7 @@
             ;; an approximate time from the file modification stamp...
             (let* ((platform-seconds-mod-time (file-or-directory-modify-seconds (build-path dir version)))
                    (plt-date (seconds->date platform-seconds-mod-time))
-                   (srfi-date (make-date 0
+                   (srfi-date (srfi:make-date 0
                                          (date-second plt-date)
                                          (date-minute plt-date)
                                          (date-hour plt-date)
