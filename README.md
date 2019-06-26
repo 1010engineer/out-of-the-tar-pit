@@ -10,4 +10,7 @@ Read the paper https://github.com/papers-we-love/papers-we-love/blob/master/desi
 
 Explaining the paper, part 1: https://youtu.be/l-y63RNzxZQ  
 Explaining the paper, part 2: https://youtu.be/hGr2OstSbGk  
-Live stream fixing the sourcce code: https://youtu.be/JL21QwIG5O4, https://youtu.be/QSLPZSoXsCo
+Live streams fixing the source code: 
+
+1. https://youtu.be/JL21QwIG5O4
+2. https://youtu.be/QSLPZSoXsCo
