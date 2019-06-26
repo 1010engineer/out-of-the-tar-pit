@@ -46,7 +46,7 @@
   (define (process-request ccon rid msg)
       ;; This is the proc which processes a message once it has been
       ;; received from the client and returns the response
-      ;;(display (string-append "process-request called..." (stringify rid) " " (stringify msg) "\n"))
+      (display (string-append "process-request called..." (stringify rid) " " (stringify msg) "\n"))
       (let ((response
              (if (pair? msg)
                  (case (car msg)
@@ -110,7 +110,7 @@
                          (display "Cleaning up closed client connection...")
                          (close-connection ccon))))
         (let ((next-msg-bit (read-from-port-no-block (ccon/input-sock ccon))))
-        ;;(display (string-append "RAW: [" next-msg-bit "]\n"))
+        ;(display (string-append "RAW: [" next-msg-bit "]\n"))
         (ccon/set-msg-so-far! ccon (string-append (ccon/msg-so-far ccon) next-msg-bit))
         (if (ccon/msg-ready? ccon)
             (begin

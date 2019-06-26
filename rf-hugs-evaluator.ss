@@ -15,8 +15,9 @@
   (require "rf-expr-defs.ss")
   (require "rf-catalog.ss")             ; catalog-fn/code  catalog-fn/haskell?  catalog-function-names ...
 
-  (define HUGS-PROMPT "Main> ")
-  (define LAUNCH-HUGS-CMD "/usr/local/bin/hugs")
+  (define HUGS-PROMPT "Hugs> ")
+  ; (define LAUNCH-HUGS-CMD "/usr/local/bin/hugs")
+  (define LAUNCH-HUGS-CMD "docker run --rm -ti -v \"$PWD\":/hugs sdthirlwall/hugs")
 
   (define *hugs* null)
 
@@ -32,9 +33,11 @@
 
   (define (start-hugs file)
       ;; This proc assumes that hugs isn't already running...
+      (display "start-hugs: ") (display LAUNCH-HUGS-CMD) (display " ") (display file) (newline)
       (set! *hugs* (apply make-hugs (process* LAUNCH-HUGS-CMD file))) ; PLT
                                         ; Now we need to skip past all the start-up messages until
                                         ; we get to the start prompt...
+    (newline) (display "wait hugs") (newline)
     (read-from-port-until-string (hugs/in *hugs*) HUGS-PROMPT))
 
   (define (stop-hugs)
@@ -48,6 +51,7 @@
   (define (hugs-start-if-necessary) (if (not (hugs-is-running)) (hugs-reconfigure)))
 
   (define (hugs-reconfigure) ; With the latest types / fns etc...
+      (display "hugs-reconfigure")
       ;; First we need to prep an input file to give to hugs
       (let* ((file (make-temporary-file))) ; PLT
         (hugs-write-defs (open-output-file file 'truncate/replace)) ; PLT
@@ -71,7 +75,7 @@
 
   (define (hugs-eval expr-string)
       ;; Evaluate the expr-string _synchronously_
-      ;;(display "hugs-eval:") (display expr-string) (newline)
+      (display "hugs-eval:") (display expr-string) (newline)
       (hugs-start-if-necessary)
       (display expr-string (hugs/out *hugs*))
       (newline (hugs/out *hugs*))

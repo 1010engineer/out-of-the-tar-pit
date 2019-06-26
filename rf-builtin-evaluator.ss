@@ -44,8 +44,8 @@
 
   (define (eval-indepedent-fn-with-values fname value-list)
       ;; NB - the elements of the value-list are _NOT_ evaluated any further
-      ;;(display (string-append "builtin : " (symbol->string fname) " "
-      ;;                        (apply string-append (map expr->string value-list)) "\n"))
+      (display (string-append "builtin : " (symbol->string fname) " "
+                              (apply string-append (map expr->string value-list)) "\n"))
     (case fname
       ((+ - * / > < >= <= =) (eval-scheme-binary-fn
                               (second (assoc fname (zip '(+ - * / > < >= <= =)

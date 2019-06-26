@@ -16,9 +16,9 @@
   (require "rf-core.ss")                ; core-add-evaluator
   (require "rf-expr-defs.ss")
 
-  ;;(define DATA-DIR "/Users/ben/Documents/OOTP/Scheme/data/emarket")
-  (define DATA-DIR "/Users/ben/Documents/OOTP/Scheme/data/trader")
-  ;;(define DATA-DIR "/Users/ben/Documents/OOTP/Scheme/data/test")
+  ;;(define DATA-DIR "/Users/dima/workspace/out-of-the-tar-pit/data/emarket")
+;   (define DATA-DIR "/Users/dima/workspace/out-of-the-tar-pit/data/trader")
+  (define DATA-DIR "/Users/dima/workspace/out-of-the-tar-pit/data/test")
 
   (define (save-relation rel-var-name new-rel)
       (display (string-append "saving table....:" (symbol->string rel-var-name) "\n"))
@@ -55,21 +55,23 @@
 
   (define (lookup-relation when table-name)
       ;; "when" will be a SRFI 19 "time" structure with UTC base.
-      ;;(display (string-append "store::  " (date->string (time-utc->date when)) " " (symbol->string table-name) "\n"))
+      (display (string-append "store::  " (date->string (time-utc->date when)) " " (symbol->string table-name) "\n"))
       (let ((dir (dir-for-table table-name)))
         (if (directory-exists? dir) ; PLT
             (let* ((potential-versions (directory-list dir))
-                   (versions (filter (lambda (x) (string-suffix? ".data" x) dir) potential-versions))
+                   (versions (filter (lambda (x) (string-suffix? ".data" (path->string x)) dir) potential-versions))
                    (path (build-path dir (version-to-load when versions null dir)))) ; PLT
-;               (display (string-append "lookup-relation["
-;                                       (date->string (time-utc->date when) "~T ~N")
-;                                       "]...<<" (stringify versions) ">>path=" path "\n"))
+            ;   (display (string-append "lookup-relation["
+                                    ;    (date->string (time-utc->date when) "~T ~N")
+                                    ;    "]...<<" (stringify versions) ">>path=" (stringify path) "\n"))
               (sexp->rel (format-list-for-relation (read-from-file path))))
             (error "could not lookup non-existant relation" table-name))))
 
-  (define (time-for-version version dir)
-      ;;(display (string-append "time-for-version " version " " dir "\n"))
-      (let ((ind (string-index version #\$)))
+  (define (time-for-version version1 dir1)
+;      (display (string-append "time-for-version " version " " dir "\n"))
+      (let* ((version (path->string version1))
+             (dir (stringify dir1))
+             (ind (string-index version #\$)))
         (if ind
             (let* ((tstring (string-drop version (+ 1 ind)))
                    (ind2 (string-index tstring #\-))
@@ -103,7 +105,7 @@
 
   (define (best-version when best-version-so-far other-version dir)
       (let ((other-version-time (time-for-version other-version dir)))
-        ;;(display (expr->string other-version-time)) (newline)
+        (display (expr->string other-version-time)) (newline)
         (if (time<? when other-version-time)
             best-version-so-far
             ;; We know that other-version has a valid time...
@@ -116,6 +118,7 @@
 
   ;; Register with the core when the module is loaded...
   (core-register-stored-var-resolver (cons lookup-relation save-relation))
-  ;;(display (map (lambda (v) (date->string (time-utc->date (time-for-version v (build-path DATA-DIR "")))))
-  ;;              (directory-list DATA-DIR)))
+;   (display (map (lambda (v) (date->string (time-utc->date (time-for-version v (build-path DATA-DIR)))))
+                ; (directory-list DATA-DIR)))
+  (newline)
 )

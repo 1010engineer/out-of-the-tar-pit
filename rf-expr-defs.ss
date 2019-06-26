@@ -240,8 +240,8 @@
     (heading rel/heading)               ; This will be a :heading
     (body rel/body))                    ; This will be a list of lists of :exprs
   (define (make-rel heading body-exprs) ; body-exprs should be a list of :exprs
-      ;;(display (string-append "make-rel:" (heading->string heading) "\n"))
-      ;;(display body-exprs) (newline)
+      (display (string-append "make-rel:" (heading->string heading) "\n"))
+      (display body-exprs) (newline)
       (if (not (= (* (length (heading/attrs heading)) (length body-exprs)) ; #values expected in whole relation
                   (fold (lambda (row so-far) (+ (length row) so-far)) 0 body-exprs))) ; actual #values
           (error "Attempt to make relation from non-consistent components" (heading->string heading) body-exprs)

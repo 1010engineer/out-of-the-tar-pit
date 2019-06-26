@@ -154,7 +154,7 @@
         (else (error "Unknown <expr> type cannot be evaluated:" expr))))
 
   (define (eval-func-invoc-repr when fir . optional-env)
-      ;;(display (string-append "EVAL: " (expr->string fir) " " (stringify optional-env) "\n"))
+      (display (string-append "EVAL: " (expr->string fir) " " (stringify optional-env) "\n"))
     (let ((fname (func-invoc-repr/name fir))
           (arg-exprs (func-invoc-repr/arg-exprs fir)))
           ;; NB - an _INDEPENDENT_ fn is one whose result is not dependent upon

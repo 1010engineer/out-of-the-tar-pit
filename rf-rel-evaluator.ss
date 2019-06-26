@@ -128,9 +128,9 @@
         (display (expr->string (join r1 r2)))))
 
   (define (tuple-eq? tuple1 tuple2)
-      ;;(display (string-append "comparing tuples for equality :"
-      ;;                        (tuple->string tuple1) " == "
-      ;;                        (tuple->string tuple2) "\n"))
+      (display (string-append "comparing tuples for equality :"
+                              (tuple->string tuple1) " == "
+                              (tuple->string tuple2) "\n"))
       (let ((heading1 (tuple/heading tuple1))
             (heading2 (tuple/heading tuple2)))
         (if (heading-eq? heading1 heading2)
@@ -280,8 +280,8 @@
           ;; (read (open-input-string new-attr-name-str))
           (let ((new-attr-name (string->symbol new-attr-name-str)))
             (display "TBA - Get rid of all the nasty mergesort / quicksort nonsense and refactor it....\n")
-            ;;(display (string-append (expr->string rel) (symbol->string new-attr-name) (expr->string expr)))
-            ;;(newline)
+            (display (string-append (expr->string rel) (symbol->string new-attr-name) (expr->string expr)))
+            (newline)
             (if (not (rel? rel))
                 (error "extend must be called with a relation, a col name and an expr" rel new-attr-name expr)
                 (let* ((body (rel/body rel))
