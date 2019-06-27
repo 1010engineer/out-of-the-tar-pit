@@ -16,8 +16,7 @@
   (require "rf-catalog.ss")             ; catalog-fn/code  catalog-fn/haskell?  catalog-function-names ...
 
   (define HUGS-PROMPT "Hugs> ")
-  ; (define LAUNCH-HUGS-CMD "/usr/local/bin/hugs")
-  (define LAUNCH-HUGS-CMD "docker run --rm -ti -v \"$PWD\":/hugs sdthirlwall/hugs")
+  (define LAUNCH-HUGS-CMD "/usr/bin/hugs")
 
   (define *hugs* null)
 
