@@ -46,11 +46,9 @@
 
   (define (read-from-port-until p stop? msg-so-far)
       ;; Returns the string that was read & closes if the end is reached
-      (newline) (display "msg-so-far: ") (display p) (display " ") (display msg-so-far) (newline)
       (if (stop? p msg-so-far)
           msg-so-far
           (let ((c (read-char p)))
-            (newline) (display "eof-object?: ") (display c)
             (if (eof-object? c)
                 (begin (close-input-port p) msg-so-far)
                 (read-from-port-until p
